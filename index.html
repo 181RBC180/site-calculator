@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор стоимости</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .calculator { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+        .option { margin: 10px 0; }
+        .total { font-size: 20px; font-weight: bold; margin-top: 15px; }
+        .button { background-color: #0088cc; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Рассчитайте стоимость</h2>
+        
+        <label>Тип сайта:</label>
+        <select id="siteType" class="option">
+            <option value="150">Лендинг (1 стр.) - $150</option>
+            <option value="300">Многостраничный - $300</option>
+            <option value="100">Интеграция с CRM - $100</option>
+        </select>
+        
+        <div>
+            <input type="checkbox" id="seo" value="50"> SEO-оптимизация (+$50)
+        </div>
+        <div>
+            <input type="checkbox" id="animation" value="30"> Анимация (+$30)
+        </div>
+        <div>
+            <input type="checkbox" id="chat" value="40"> Интеграция с чатом (+$40)
+        </div>
+        
+        <div class="total">Итоговая стоимость: <span id="totalPrice">$150</span></div>
+        
+        <button class="button" onclick="sendToTelegram()">Оставить заявку</button>
+    </div>
+    
+    <script>
+        function calculateTotal() {
+            let sitePrice = parseInt(document.getElementById("siteType").value);
+            let extraCost = 0;
+            if (document.getElementById("seo").checked) extraCost += 50;
+            if (document.getElementById("animation").checked) extraCost += 30;
+            if (document.getElementById("chat").checked) extraCost += 40;
+            document.getElementById("totalPrice").innerText = "$" + (sitePrice + extraCost);
+        }
+        
+        document.querySelectorAll("input, select").forEach(el => {
+            el.addEventListener("change", calculateTotal);
+        });
+        
+        function sendToTelegram() {
+            let totalPrice = document.getElementById("totalPrice").innerText;
+            let telegramLink = "https://t.me/ТВОЙ_TELEGRAM?text=Здравствуйте, хочу заказать сайт. Итоговая стоимость: " + totalPrice;
+            window.open(telegramLink, "_blank");
+        }
+    </script>
+</body>
+</html>
