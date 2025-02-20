@@ -5,39 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Калькулятор стоимости</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #e3f2fd; color: #333; }
-        .container { max-width: 800px; margin: auto; }
-        .section { margin-bottom: 40px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .calculator { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background: white; }
-        .option { margin: 10px 0; }
-        .total { font-size: 20px; font-weight: bold; margin-top: 15px; color: #0088cc; }
-        .button { background-color: #0088cc; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: 0.3s; }
-        .button:hover { background-color: #005f99; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
         
-        /* Анимация появления */
+        body {
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #333;
+        }
+        .container { max-width: 800px; margin: auto; }
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .calculator { max-width: 400px; margin: auto; padding: 20px; border-radius: 10px; background: white; }
+        .option { margin: 10px 0; }
+        .total { font-size: 24px; font-weight: bold; margin-top: 15px; color: #007bb5; }
+        .button {
+            background: linear-gradient(135deg, #007bb5, #0088cc);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .button:hover { background: linear-gradient(135deg, #005f99, #006fa8); }
+        
         .visible { opacity: 1; transform: translateY(0); }
+        .services { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .service-card {
+            background: #f1f8ff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1 1 250px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Hero Section -->
         <div class="section">
-            <h1 style="color: #0088cc;">Быстро и просто: ваш сайт за 3 дня</h1>
+            <h1 style="color: #007bb5;">Быстро и просто: ваш сайт за 3 дня</h1>
             <p>Качественный сайт без головной боли: адаптивный, стильный и понятный</p>
             <a href="https://t.me/ТВОЙ_TELEGRAM" class="button">Заказать сайт</a>
         </div>
         
-        <!-- Услуги -->
         <div class="section">
             <h2>Мои услуги</h2>
-            <ul>
-                <li>✅ Лендинг (одностраничный сайт)</li>
-                <li>✅ Многостраничный сайт</li>
-                <li>✅ Интеграция с CRM/чат-ботами</li>
-            </ul>
+            <div class="services">
+                <div class="service-card">✅ Лендинг (одностраничный сайт)</div>
+                <div class="service-card">✅ Многостраничный сайт</div>
+                <div class="service-card">✅ Интеграция с CRM/чат-ботами</div>
+            </div>
         </div>
         
-        <!-- Калькулятор -->
         <div class="section calculator">
             <h2>Рассчитайте стоимость</h2>
             <label>Тип сайта:</label>
@@ -46,29 +78,21 @@
                 <option value="300">Многостраничный - $300</option>
                 <option value="100">Интеграция с CRM - $100</option>
             </select>
-            <div>
-                <input type="checkbox" id="seo" value="50"> SEO-оптимизация (+$50)
-            </div>
-            <div>
-                <input type="checkbox" id="animation" value="30"> Анимация (+$30)
-            </div>
-            <div>
-                <input type="checkbox" id="chat" value="40"> Интеграция с чатом (+$40)
-            </div>
+            <div><input type="checkbox" id="seo" value="50"> SEO-оптимизация (+$50)</div>
+            <div><input type="checkbox" id="animation" value="30"> Анимация (+$30)</div>
+            <div><input type="checkbox" id="chat" value="40"> Интеграция с чатом (+$40)</div>
             <div class="total">Итоговая стоимость: <span id="totalPrice">$150</span></div>
             <button class="button" onclick="sendToTelegram()">Оставить заявку</button>
         </div>
         
-        <!-- Отзывы -->
         <div class="section">
             <h2>Отзывы клиентов</h2>
             <p>Ваш отзыв появится здесь – будьте первым!</p>
         </div>
         
-        <!-- Контакты -->
         <div class="section">
             <h2>Контакты</h2>
-            <p>📩 Telegram: <a href="https://t.me/ТВОЙ_TELEGRAM" style="color: #0088cc;">Написать в Telegram</a></p>
+            <p>📩 Telegram: <a href="https://t.me/ТВОЙ_TELEGRAM" class="button">Написать в Telegram</a></p>
             <p>📧 Email: info@yourdomain.com</p>
         </div>
     </div>
@@ -79,7 +103,7 @@
             let extraCost = 0;
             if (document.getElementById("seo").checked) extraCost += 50;
             if (document.getElementById("animation").checked) extraCost += 30;
-            if (document.getElementById("chat").checked) extraCost += 40;
+            if (document.getElementById("chat"),checked) extraCost += 40;
             document.getElementById("totalPrice").innerText = "$" + (sitePrice + extraCost);
         }
         
@@ -93,7 +117,6 @@
             window.open(telegramLink, "_blank");
         }
         
-        // Анимация появления секций
         document.addEventListener("DOMContentLoaded", function() {
             let sections = document.querySelectorAll(".section");
             sections.forEach((section, index) => {
