@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Калькулятор стоимости</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f8f9fa; color: #333; }
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #e3f2fd; color: #333; }
         .container { max-width: 800px; margin: auto; }
-        .section { margin-bottom: 40px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .section { margin-bottom: 40px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
         .calculator { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background: white; }
         .option { margin: 10px 0; }
         .total { font-size: 20px; font-weight: bold; margin-top: 15px; color: #0088cc; }
         .button { background-color: #0088cc; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: 0.3s; }
         .button:hover { background-color: #005f99; }
+        
+        /* Анимация появления */
+        .visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
@@ -89,6 +92,16 @@
             let telegramLink = "https://t.me/ТВОЙ_TELEGRAM?text=Здравствуйте, хочу заказать сайт. Итоговая стоимость: " + totalPrice;
             window.open(telegramLink, "_blank");
         }
+        
+        // Анимация появления секций
+        document.addEventListener("DOMContentLoaded", function() {
+            let sections = document.querySelectorAll(".section");
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.classList.add("visible");
+                }, index * 300);
+            });
+        });
     </script>
 </body>
 </html>
